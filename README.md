@@ -125,5 +125,5 @@ AI sẽ:
 ## 1. Clone source code
 
 ```bash
-git clone <your-repository-link>
+git clone <repository-link>
 
