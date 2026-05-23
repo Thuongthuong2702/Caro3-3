@@ -1,37 +1,129 @@
-# Caro3-3
-Game cờ caro: 
-I. Hướng dẫn cài đặt và chạy game: 
-+ B1: Tải source Code và chạy trên phần mềm Unity phiên bản 2021.3.37f1;
-+ B2: Chạy game: build game và chạy;
+# Tic Tac Toe / Caro 3x3 Game
+Tác giả: Nguyễn Thị Thương 
 
+MSV: 23021734 
 
-//Các phiên bản:
-+ Phiên bản 1.0: Chưa có đồ hoạ, show board gồm 9 ô lập thành một bảng, chế độ 2 người chơi với nhau; 
-Mỗi lượt người chơi nhập vào từ bàn phím vị trí ô mình thay đổi từ ô trống thành x/o; cập nhập xem đã đến điều kiện dừng hay chưa (có 3 ô thẳng hàng cùng x/o); khi hết cả 9 ô mà chưa có người chiến thắng thì in ra màn hình "Draw", sau mỗi lượt có người chiến thắng thì in ra tên của người chiến thắng.
+Một dự án game Caro 3x3 được phát triển bằng Unity với hai chế độ chơi:
+ Player vs Player
+ Player vs AI
 
-+ Phiên bản 1.1: Cải tiến thêm chế độ người chơi với máy, máy tự random vị trí ô máy đánh
+Phiên bản hiện tại sử dụng thuật toán Minimax giúp AI đưa ra nước đi tối ưu nhằm tăng khả năng chiến thắng.
 
-+ Phiên bản 2.0 (đã hoàn thành): Sử dụng đồ hoạ thông qua phần mềm Unity; xây dựng bảng, 2 chế độ 2 người chơi/ người chơi với máy; Cải tiến máy thông minh hơn khi lựa chọn nước đi để tăng khả năng chiến thắng của máy bằng cách áp dụng thuật toán minimax; lưu số điểm với mỗi trường hợp máy chọn - cuối cùng tick vào ô có khả năng chiến thắng của máy; 
+---
 
-II. Mô tả chung về trò chơi
-+ Cờ Caro là một trò chơi bàn phổ biến, thường được chơi trên một bảng ô vuông với kích thước cố định. Trò chơi thường được chơi bởi hai người, mỗi người sử dụng một loại ký hiệu khác nhau (thường là "X" và "O") để đánh dấu các ô trên bảng.
-+ Mục tiêu của trò chơi là để tạo ra một dãy liên tiếp của các ký hiệu của bạn trên bảng, theo chiều ngang, dọc hoặc chéo, trước khi đối thủ của bạn làm được điều đó. Người chơi nào đầu tiên tạo ra một dãy liên tiếp gồm một số lượng quy định trước của các ký hiệu của mình thì sẽ chiến thắng.
+# Giới thiệu
 
-III. Luật chơi
-+ Lượt chơi: Hai người chơi lần lượt đặt các ký hiệu của mình lên bảng, một sau một.
-+ Thắng cuộc: Người chơi nào đầu tiên tạo ra một dãy liên tiếp của các ký hiệu của mình theo một hàng ngang, một hàng dọc hoặc một đường chéo thì sẽ thắng cuộc.
-+ Hòa nhau: Nếu bảng đầy và không có người chơi nào thắng, trò chơi kết thúc hòa.
+Cờ Caro (Tic Tac Toe) là trò chơi chiến thuật dành cho hai người chơi trên bảng 3x3.  
+Người chơi lần lượt đánh dấu ký hiệu `X` hoặc `O` vào các ô trống trên bàn cờ.
 
-IV. Các kỹ thuật lập trình được sử dụng
-+ Xây dựng các Class hướng đến các đối tượng trong game;
-+ Sử dụng vector, tách hàm để dễ dàng quản lý
-+ Sử dụng các thuật toán cơ bản kiểm tra điều kiện dừng, Minimax,...
+Mục tiêu:
+- Tạo thành một hàng gồm 3 ký hiệu giống nhau theo:
+  - Hàng ngang
+  - Hàng dọc
+  - Đường chéo
 
-V. Hỗ trợ
-+ Sử dụng Canva để thiết kế đồ hoạ
+Nếu toàn bộ bàn cờ đã được điền mà không có người chiến thắng, trò chơi sẽ kết thúc với kết quả hòa.
 
-VI. Tài liệu tham khảo: Thuật toán minimax: kênh HGTV, Kênh Hutpea, chat gpt
-Link video tham khảo: https://www.youtube.com/watch?v=9wIqpACgFcI
+---
+# Tính năng chính
 
-(Souce code nằm ở file Script)
+## Chế độ 2 người chơi
+- Hai người chơi thay phiên đánh dấu `X` và `O`
+- Kiểm tra điều kiện thắng/thua sau mỗi lượt
+- Hỗ trợ kết quả hòa khi bàn cờ đầy
+
+---
+
+## Chế độ chơi với máy
+- AI tự động tính toán nước đi
+- Máy có khả năng:
+  - Chặn nước thắng của người chơi
+  - Tìm nước đi tối ưu để chiến thắng
+  - Đưa ra quyết định dựa trên trạng thái bàn cờ hiện tại
+
+---
+
+## AI sử dụng thuật toán Minimax
+- Đánh giá các trạng thái của bàn cờ
+- Phân tích các nước đi có thể xảy ra
+- Tìm nước đi tối ưu nhất cho AI
+- Tăng khả năng chiến thắng hoặc hòa
+
+---
+
+## Giao diện đồ họa Unity
+- Bàn cờ trực quan
+- Hiển thị lượt chơi hiện tại
+- Hiển thị kết quả thắng/thua/hòa
+- Tương tác thông qua giao diện Unity
+
+---
+
+# Thuật toán Minimax
+
+Dự án sử dụng thuật toán **Minimax** để xây dựng hệ thống AI.
+
+## Ý tưởng hoạt động
+AI sẽ:
+1. Mô phỏng tất cả các nước đi có thể xảy ra
+2. Đánh giá điểm số cho từng trạng thái bàn cờ
+3. Chọn nước đi mang lại kết quả tốt nhất
+
+## Ưu điểm
+- AI chơi thông minh hơn
+- Hạn chế các nước đi sai
+- Khó bị đánh bại
+- Đảm bảo lựa chọn tối ưu trong nhiều tình huống
+
+---
+
+# Các phiên bản phát triển
+
+## Version 1.0
+- Chạy trên console
+- Chế độ 2 người chơi
+- Nhập vị trí từ bàn phím
+- Kiểm tra thắng/thua/hòa
+
+---
+
+## Version 1.1
+- Thêm chế độ Player vs AI
+- AI chọn nước đi ngẫu nhiên
+
+---
+
+## Version 2.0 (Current)
+- Xây dựng giao diện bằng Unity
+- Thêm đồ họa cho bàn cờ
+- AI sử dụng thuật toán Minimax
+- Cải thiện logic xử lý trò chơi
+
+---
+
+# Kỹ thuật lập trình sử dụng
+
+- Lập trình hướng đối tượng (OOP)
+- Tách hàm để dễ quản lý và bảo trì
+- Quản lý trạng thái bàn cờ
+- Sử dụng Vector và GameObject trong Unity
+- Thuật toán kiểm tra điều kiện thắng
+- Thuật toán Minimax cho AI
+
+---
+# Công nghệ sử dụng
+
+- Unity `2021.3.37f1`
+- C#
+- Object-Oriented Programming (OOP)
+- Minimax Algorithm
+
+---
+
+# Hướng dẫn cài đặt và chạy game
+
+## 1. Clone source code
+
+```bash
+git clone <your-repository-link>
 
